@@ -79,9 +79,9 @@ export default function Home() {
             {/* Main Content */}
             <Header profile={profile} />
             <AboutSection profile={profile} stats={stats} />
-            <SkillsSection skills={skills} />
-            <ExperienceSection experiences={experiences} />
-            <ProjectsSection projects={projects} />
+            <SkillsSection />
+            <ExperienceSection />
+            <ProjectsSection />
             <TestimonialsSection />
             <ContactSection profile={profile} />
             <Footer profile={profile} />

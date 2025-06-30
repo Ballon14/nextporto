@@ -1,81 +1,72 @@
-# Portfolio Next.js - Programmer Gabut
+# MyPortfolio - Next.js + MongoDB
 
-## Fitur
+Portfolio web modern dengan Next.js App Router, TailwindCSS, dan MongoDB.
 
--   Struktur folder modular dan scalable
--   SEO friendly (metadata, semantic HTML, OpenGraph, dsb)
--   Optimasi gambar dengan Next.js `<Image />`
--   Styling modern dengan Tailwind CSS
--   Komponen reusable dan mudah dikembangkan
+## ✨ Fitur Utama
 
-## Struktur Folder
+-   CRUD data Skills, Experience, Projects via halaman admin (dengan autentikasi sederhana)
+-   Data dinamis dari MongoDB (bukan hardcoded)
+-   UI modern, responsive, dan mudah dikustomisasi
+-   Admin dashboard dengan tampilan khusus
+-   Deploy-ready (bisa dijalankan di server dengan PM2)
 
-```
-myportfolio/
-├── app/
-│   ├── page.js
-│   ├── about/
-│   │   └── page.js
-│   ├── skills/
-│   │   └── page.js
-│   ├── experience/
-│   │   └── page.js
-│   ├── projects/
-│   │   └── page.js
-│   ├── contact/
-│   │   └── page.js
-│   ├── components/
-│   │   ├── layout/
-│   │   │   ├── Header.js
-│   │   │   └── Footer.js
-│   │   ├── sections/
-│   │   │   ├── AboutSection.js
-│   │   │   ├── SkillsSection.js
-│   │   │   ├── ExperienceSection.js
-│   │   │   ├── ProjectsSection.js
-│   │   │   ├── TestimonialsSection.js
-│   │   │   └── ContactSection.js
-│   │   └── ui/
-│   │       ├── Button.js
-│   │       ├── Card.js
-│   │       └── ProgressBar.js
-│   ├── globals.css
-│   └── layout.js
-├── lib/
-│   └── data.js
-├── public/
-│   └── images/
-│       ├── avatar.jpg
-│       ├── projects/
-│       └── icons/
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── next.config.js
-└── README.md
-```
+## 🚀 Instalasi & Setup
 
-## SEO & Optimasi
+1. **Clone repo & install dependencies**
 
--   Metadata SEO di setiap halaman (`export const metadata` di setiap `page.js`)
--   OpenGraph & Twitter Card sudah diatur di `app/layout.js`
--   Gunakan semantic tag (`<main>`, `<section>`, `<footer>`, dsb)
--   Gambar dioptimasi dengan Next.js `<Image />`
--   Favicon sudah disiapkan (`/public/favicon.ico`)
+    ```bash
+    git clone <repo-url>
+    cd myportfolio
+    npm install
+    ```
 
-## Jalankan Project
+2. **Buat file `.env.local`**
 
-```bash
-pnpm install
-pnpm dev
-```
+    ```env
+    MONGODB_URI=mongodb://username:password@host:port/?authSource=admin
+    ```
 
-## Customisasi
+3. **Jalankan development**
 
--   Ubah data di `lib/data.js`
--   Tambah gambar di `public/images/`
+    ```bash
+    npm run dev
+    # buka http://localhost:3000
+    ```
+
+4. **Akses halaman admin**
+    - Buka `/admin`
+    - Login: `admin` / `admin123`
+
+## 🏗️ Build & Deploy Production
+
+1. **Build project**
+    ```bash
+    npm run build
+    ```
+2. **Jalankan dengan PM2**
+    ```bash
+    pm2 start npm --name "myportfolio" -- start
+    ```
+
+## 🗂️ Struktur Folder
+
+-   `app/` - Source utama Next.js (pages, components, sections)
+-   `models/` - Schema Mongoose
+-   `lib/` - Koneksi MongoDB
+-   `public/` - Asset statis (gambar, icon)
+
+## 📝 Customisasi
+
+-   Edit data profile di `app/page.js` (atau buat dinamis dari database)
 -   Tambah/ubah komponen di `app/components/`
+-   Ubah style di `app/globals.css` atau `tailwind.config.js`
+
+## 💡 Catatan
+
+-   Pastikan MongoDB bisa diakses dari server/localhost
+-   Restart server setiap kali mengubah schema model
+-   Untuk fitur lebih lanjut (auth, upload gambar, dsb) bisa dikembangkan sesuai kebutuhan
 
 ---
 
-> Dibuat dengan ❤️ oleh programmer gabut yang lagi belajar coding.
+Made with ❤️ by Iqbal

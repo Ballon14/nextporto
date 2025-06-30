@@ -1,9 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function Skills({ skills }) {
+export default function SkillsSection() {
+    const [skills, setSkills] = useState([])
     const [selectedCategory, setSelectedCategory] = useState("All")
+
+    useEffect(() => {
+        fetch("/api/skills")
+            .then((res) => res.json())
+            .then(setSkills)
+    }, [])
 
     const categories = [
         "All",
@@ -45,54 +52,30 @@ export default function Skills({ skills }) {
                 </div>
 
                 {/* Skills Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredSkills.map((skill, index) => (
                         <div
                             key={index}
-                            className="card group hover:scale-105 transition-transform duration-300"
+                            className="card p-6 flex flex-col items-center text-center"
                         >
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="flex items-center">
-                                    <span className="text-3xl mr-3">
-                                        {skill.icon}
-                                    </span>
-                                    <div>
-                                        <h3 className="text-lg font-bold text-white">
-                                            {skill.name}
-                                        </h3>
-                                        <p className="text-sm text-primary-400">
-                                            {skill.category}
-                                        </p>
-                                    </div>
-                                </div>
+                            <div className="text-5xl mb-4">{skill.icon}</div>
+                            <h3 className="text-lg font-bold text-white mb-2">
+                                {skill.name}
+                            </h3>
+                            <div className="text-primary-400 text-sm mb-2">
+                                {skill.category}
                             </div>
-
-                            {/* Progress Bar */}
-                            <div className="mb-2">
-                                <div className="flex justify-between text-sm text-dark-300 mb-1">
-                                    <span>Level</span>
-                                    <span>{skill.level}%</span>
-                                </div>
-                                <div className="w-full bg-dark-700 rounded-full h-2">
-                                    <div
-                                        className="bg-gradient-to-r from-primary-400 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out"
-                                        style={{ width: `${skill.level}%` }}
-                                    ></div>
-                                </div>
+                            <div className="text-dark-300 mb-4">
+                                {skill.description}
                             </div>
-
-                            {/* Skill Description */}
-                            <div className="text-sm text-dark-300">
-                                {skill.level >= 80 &&
-                                    "Expert Level - Sudah mahir! 🚀"}
-                                {skill.level >= 60 &&
-                                    skill.level < 80 &&
-                                    "Advanced - Lumayan bisa! 💪"}
-                                {skill.level >= 40 &&
-                                    skill.level < 60 &&
-                                    "Intermediate - Masih belajar! 📚"}
-                                {skill.level < 40 &&
-                                    "Beginner - Baru mulai! 🌱"}
+                            <div className="w-full bg-dark-700 rounded-full h-2 mb-2">
+                                <div
+                                    className="bg-primary-400 h-2 rounded-full"
+                                    style={{ width: `${skill.level}%` }}
+                                ></div>
+                            </div>
+                            <div className="text-xs text-dark-400">
+                                Level: {skill.level}%
                             </div>
                         </div>
                     ))}

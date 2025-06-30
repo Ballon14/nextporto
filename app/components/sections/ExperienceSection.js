@@ -1,6 +1,17 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Card from "../ui/Card"
 
-export default function Experience({ experiences }) {
+export default function ExperienceSection() {
+    const [experiences, setExperiences] = useState([])
+
+    useEffect(() => {
+        fetch("/api/experiences")
+            .then((res) => res.json())
+            .then(setExperiences)
+    }, [])
+
     return (
         <section
             id="experience"

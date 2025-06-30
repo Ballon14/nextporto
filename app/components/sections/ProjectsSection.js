@@ -1,10 +1,18 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Card from "../ui/Card"
 import Button from "../ui/Button"
 
-export default function Projects({ projects }) {
+export default function ProjectsSection() {
+    const [projects, setProjects] = useState([])
+
+    useEffect(() => {
+        fetch("/api/projects")
+            .then((res) => res.json())
+            .then(setProjects)
+    }, [])
+
     const [selectedCategory, setSelectedCategory] = useState("All")
 
     const categories = [

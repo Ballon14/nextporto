@@ -1,3 +1,5 @@
+"use client"
+
 export default function About({ profile, stats }) {
     // Debug log
     if (typeof window !== "undefined") {
