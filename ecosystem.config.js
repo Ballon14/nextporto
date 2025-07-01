@@ -1,10 +1,10 @@
 module.exports = {
     apps: [
         {
-            name: "myportfolio",
+            name: "iqbaldev-portfolio",
             script: "npm",
             args: "start",
-            cwd: "./",
+            cwd: "/var/www/html/portfolio",
             instances: 1,
             autorestart: true,
             watch: false,
@@ -17,6 +17,10 @@ module.exports = {
                 NODE_ENV: "production",
                 PORT: 3000,
             },
+            log_file: "/var/www/html/logs/combined.log",
+            out_file: "/var/www/html/logs/out.log",
+            error_file: "/var/www/html/logs/error.log",
+            log_date_format: "YYYY-MM-DD HH:mm Z",
         },
     ],
 }
