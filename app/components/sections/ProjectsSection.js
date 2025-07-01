@@ -132,7 +132,10 @@ export default function ProjectsSection() {
                                         size="sm"
                                         className="flex-1"
                                         onClick={() =>
-                                            window.open(project.live, "_blank")
+                                            window.open(
+                                                project.liveUrl,
+                                                "_blank"
+                                            )
                                         }
                                     >
                                         <svg

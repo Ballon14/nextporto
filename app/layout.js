@@ -63,7 +63,9 @@ export default function RootLayout({ children }) {
     return (
         <html lang="id">
             <head>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+                {/* <link rel="icon" href="/favicon.ico" /> */}
+                {/* <link rel="icon" type="image/png" href="/favicon.png" /> */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
                     rel="preconnect"

@@ -4,19 +4,73 @@ import Experience from "../../../models/Experience"
 
 export async function GET() {
     try {
+        console.log("Testing experience creation...")
         await connectDB()
-        const experience = new Experience({
-            title: "Testing Experience",
+
+        // Test data minimal
+        const testData = {
+            title: "Test Experience",
             company: "Test Company",
-            location: "Jakarta",
-            period: { start: "2023", end: "2024" },
-            description: "Pengalaman untuk testing",
-            technologies: ["React", "Node.js"],
-            achievements: ["Achievement 1", "Achievement 2"],
-        })
+            description: "Test description",
+            period: {
+                start: "2023-01",
+                end: "Present",
+            },
+        }
+
+        console.log("Test data:", testData)
+
+        const experience = new Experience(testData)
         await experience.save()
-        return NextResponse.json({ success: true, experience })
+
+        console.log("Test experience created:", experience._id)
+        return NextResponse.json({
+            success: true,
+            message: "Test experience created successfully",
+            experience,
+        })
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+        console.error("Test experience error:", error)
+        return NextResponse.json(
+            {
+                error: error.message,
+                stack: error.stack,
+            },
+            { status: 500 }
+        )
+    }
+}
+
+export async function POST(request) {
+    try {
+        console.log("POST test-experience - Request received")
+
+        if (!request.body) {
+            return NextResponse.json(
+                { error: "No request body" },
+                { status: 400 }
+            )
+        }
+
+        await connectDB()
+        const body = await request.json()
+        console.log("POST test-experience - Body:", body)
+
+        const experience = new Experience(body)
+        await experience.save()
+
+        return NextResponse.json({
+            success: true,
+            experience,
+        })
+    } catch (error) {
+        console.error("POST test-experience error:", error)
+        return NextResponse.json(
+            {
+                error: error.message,
+                details: error.stack,
+            },
+            { status: 500 }
+        )
     }
 }

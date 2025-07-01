@@ -201,7 +201,7 @@ export default function Contact({ profile }) {
                             Ngopi Virtual?
                         </h3>
                         <p className="text-dark-300">
-                            Kalau lagi di Jakarta, bisa ngopi bareng sambil
+                            Kalau lagi di Purworejo, bisa ngopi bareng sambil
                             diskusi coding! Atau kalau jauh, bisa video call
                             sambil ngopi masing-masing 😄
                         </p>
